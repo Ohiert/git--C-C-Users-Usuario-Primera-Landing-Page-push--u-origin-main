@@ -415,6 +415,15 @@ img { max-width: 100%; display: block; }
 
 .form input[aria-invalid="true"] { border-color: #f0806a; }
 
+.form__hp { display: none; }
+
+.btn:disabled {
+  opacity: .55;
+  cursor: progress;
+}
+
+.btn:disabled:active { transform: none; }
+
 .form__msg {
   min-height: 1.25rem;
   margin-top: .875rem;

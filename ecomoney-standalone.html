@@ -418,6 +418,15 @@ img { max-width: 100%; display: block; }
 
 .form input[aria-invalid="true"] { border-color: #f0806a; }
 
+.form__hp { display: none; }
+
+.btn:disabled {
+  opacity: .55;
+  cursor: progress;
+}
+
+.btn:disabled:active { transform: none; }
+
 .form__msg {
   min-height: 1.25rem;
   margin-top: .875rem;
@@ -824,10 +833,13 @@ img { max-width: 100%; display: block; }
         <h2>Empieza por la guía</h2>
         <p class="cta__sub">Te enviamos los tres bloques de esta página en formato descargable, con checklist de lanzamiento.</p>
 
-        <form class="form" id="form" novalidate>
+        <form class="form" id="form" action="https://formspree.io/f/mjybalba" method="POST" novalidate>
           <label class="sr-only" for="email">Tu correo electrónico</label>
           <input type="email" id="email" name="email" placeholder="tu@correo.com" autocomplete="email" required>
-          <button type="submit" class="btn btn--primary">Enviar</button>
+          <input type="hidden" name="_subject" value="Nueva suscripción a Ecomoney">
+          <!-- Trampa antispam: los bots la rellenan, las personas no la ven. -->
+          <input type="text" name="_gotcha" class="form__hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit" class="btn btn--primary" id="formBtn">Enviar</button>
         </form>
         <p class="form__msg" id="formMsg" role="status"></p>
         <p class="form__legal">Sin spam. Un correo, y te das de baja cuando quieras.</p>
@@ -911,11 +923,29 @@ img { max-width: 100%; display: block; }
     revealables.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  /* ── Formulario (demo: sin backend) ── */
+  /* ── Formulario de suscripción ── */
   var form  = document.getElementById('form');
   var input = document.getElementById('email');
+  var btn   = document.getElementById('formBtn');
   var msg   = document.getElementById('formMsg');
   var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  // Mientras el action siga con el marcador, el formulario responde en local
+  // sin enviar nada: así la web nunca muestra un error al visitante.
+  var endpoint = form.getAttribute('action') || '';
+  var isLive   = endpoint.indexOf('formspree.io/f/') !== -1 &&
+                 endpoint.indexOf('TU-ID-DE-FORMSPREE') === -1;
+
+  function setBusy(busy) {
+    btn.disabled = busy;
+    btn.textContent = busy ? 'Enviando…' : 'Enviar';
+  }
+
+  function succeed(value) {
+    msg.dataset.state = 'ok';
+    msg.textContent = '¡Listo! Te escribimos a ' + value + '.';
+    form.reset();
+  }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -930,9 +960,35 @@ img { max-width: 100%; display: block; }
     }
 
     input.removeAttribute('aria-invalid');
+
+    if (!isLive) {
+      succeed(value);
+      return;
+    }
+
+    // Navegadores sin fetch: envío clásico, sale de la página.
+    if (!window.fetch) {
+      form.submit();
+      return;
+    }
+
+    setBusy(true);
     msg.dataset.state = 'ok';
-    msg.textContent = '¡Listo! Te escribimos a ' + value + '.';
-    form.reset();
+    msg.textContent = 'Enviando…';
+
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      succeed(value);
+    }).catch(function () {
+      msg.dataset.state = 'error';
+      msg.textContent = 'No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.';
+    }).then(function () {
+      setBusy(false);
+    });
   });
 
   input.addEventListener('input', function () {

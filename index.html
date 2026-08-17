@@ -237,10 +237,13 @@
         <h2>Empieza por la guía</h2>
         <p class="cta__sub">Te enviamos los tres bloques de esta página en formato descargable, con checklist de lanzamiento.</p>
 
-        <form class="form" id="form" novalidate>
+        <form class="form" id="form" action="https://formspree.io/f/mjybalba" method="POST" novalidate>
           <label class="sr-only" for="email">Tu correo electrónico</label>
           <input type="email" id="email" name="email" placeholder="tu@correo.com" autocomplete="email" required>
-          <button type="submit" class="btn btn--primary">Enviar</button>
+          <input type="hidden" name="_subject" value="Nueva suscripción a Ecomoney">
+          <!-- Trampa antispam: los bots la rellenan, las personas no la ven. -->
+          <input type="text" name="_gotcha" class="form__hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit" class="btn btn--primary" id="formBtn">Enviar</button>
         </form>
         <p class="form__msg" id="formMsg" role="status"></p>
         <p class="form__legal">Sin spam. Un correo, y te das de baja cuando quieras.</p>

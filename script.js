@@ -55,11 +55,29 @@
     revealables.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  /* ── Formulario (demo: sin backend) ── */
+  /* ── Formulario de suscripción ── */
   var form  = document.getElementById('form');
   var input = document.getElementById('email');
+  var btn   = document.getElementById('formBtn');
   var msg   = document.getElementById('formMsg');
   var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  // Mientras el action siga con el marcador, el formulario responde en local
+  // sin enviar nada: así la web nunca muestra un error al visitante.
+  var endpoint = form.getAttribute('action') || '';
+  var isLive   = endpoint.indexOf('formspree.io/f/') !== -1 &&
+                 endpoint.indexOf('TU-ID-DE-FORMSPREE') === -1;
+
+  function setBusy(busy) {
+    btn.disabled = busy;
+    btn.textContent = busy ? 'Enviando…' : 'Enviar';
+  }
+
+  function succeed(value) {
+    msg.dataset.state = 'ok';
+    msg.textContent = '¡Listo! Te escribimos a ' + value + '.';
+    form.reset();
+  }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -74,9 +92,35 @@
     }
 
     input.removeAttribute('aria-invalid');
+
+    if (!isLive) {
+      succeed(value);
+      return;
+    }
+
+    // Navegadores sin fetch: envío clásico, sale de la página.
+    if (!window.fetch) {
+      form.submit();
+      return;
+    }
+
+    setBusy(true);
     msg.dataset.state = 'ok';
-    msg.textContent = '¡Listo! Te escribimos a ' + value + '.';
-    form.reset();
+    msg.textContent = 'Enviando…';
+
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(form)
+    }).then(function (res) {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      succeed(value);
+    }).catch(function () {
+      msg.dataset.state = 'error';
+      msg.textContent = 'No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.';
+    }).then(function () {
+      setBusy(false);
+    });
   });
 
   input.addEventListener('input', function () {
