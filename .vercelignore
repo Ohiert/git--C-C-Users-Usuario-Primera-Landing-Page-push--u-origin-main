@@ -1,0 +1,3 @@
+# Versión de un solo archivo, usada solo para el Artifact de claude.ai.
+# No se despliega para no duplicar la página en /ecomoney-standalone.
+ecomoney-standalone.html
