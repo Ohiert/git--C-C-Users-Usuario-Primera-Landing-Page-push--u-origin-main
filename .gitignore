@@ -9,3 +9,6 @@ desktop.ini
 # Editores
 .vscode/
 .idea/
+
+# Experimento de tienda de laminas: 733 MB, fuera del repo de la web
+tienda-coches/
