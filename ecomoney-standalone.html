@@ -626,6 +626,57 @@ img { max-width: 100%; display: block; }
 }
 
 .form__legal a:hover { color: var(--text-invert); }
+
+/* ─── Páginas de texto (sobre, legales) ─── */
+.prose__title {
+  margin-bottom: 1.75rem;
+  font-size: clamp(1.875rem, 4.2vw, 2.75rem);
+}
+
+.prose { max-width: 34rem; }
+
+.prose p { margin-bottom: 1.25rem; }
+
+.prose__lead {
+  font-size: 1.125rem;
+  color: var(--text-soft);
+}
+
+.prose__h2 {
+  margin: 2.75rem 0 1rem;
+  font-size: 1.3rem;
+  letter-spacing: -.015em;
+}
+
+.prose ul {
+  margin: 0 0 1.25rem;
+  padding-left: 1.15rem;
+  color: var(--text-soft);
+}
+
+.prose li { margin-bottom: .625rem; }
+.prose li strong { color: var(--text); }
+
+.prose .note { margin-top: 2rem; }
+
+/* Marcador temporal: contenido que falta por escribir */
+.hueco {
+  background: #fff4d6;
+  border-bottom: 2px solid #e0a92b;
+  padding: .1em .35em;
+  border-radius: 3px;
+  color: #6b4c07;
+  font-weight: 600;
+}
+
+.hueco-bloque {
+  background: #fffdf5;
+  border: 1px dashed #e0c98b;
+  border-radius: var(--radius);
+  padding: 1.25rem 1.375rem;
+  font-size: .9375rem;
+  color: var(--text-soft);
+}
 </style>
 
 
@@ -642,6 +693,7 @@ img { max-width: 100%; display: block; }
         <a href="#empezar">Cómo empezar</a>
         <a href="#monetizar">Monetizar</a>
         <a href="#faq">FAQ</a>
+        <a href="https://eccomoney.vercel.app/sobre">Quién soy</a>
         <a href="#cta" class="btn btn--sm btn--primary">Empezar gratis</a>
       </nav>
 
@@ -883,6 +935,7 @@ img { max-width: 100%; display: block; }
         <a href="#empezar">Cómo empezar</a>
         <a href="#monetizar">Monetizar</a>
         <a href="#faq">FAQ</a>
+        <a href="https://eccomoney.vercel.app/sobre">Quién soy</a>
       </nav>
       <p class="footer__copy">© <span id="year">2026</span> Ecomoney. Contenido educativo.</p>
     </div>
@@ -946,6 +999,10 @@ img { max-width: 100%; display: block; }
     revealables.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
+  /* ── Año del footer ── */
+  var yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
   /* ── Formulario de suscripción ── */
   var form  = document.getElementById('form');
   var input = document.getElementById('email');
@@ -953,6 +1010,9 @@ img { max-width: 100%; display: block; }
   var link  = document.getElementById('formLink');
   var msg   = document.getElementById('formMsg');
   var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  // Las paginas sin formulario (sobre, guia) no necesitan nada mas.
+  if (!form) return;
 
   // Mientras el action siga con el marcador, el formulario responde en local
   // sin enviar nada: así la web nunca muestra un error al visitante.
@@ -1022,8 +1082,5 @@ img { max-width: 100%; display: block; }
     link.hidden = true;
     input.removeAttribute('aria-invalid');
   });
-
-  /* ── Año del footer ── */
-  document.getElementById('year').textContent = new Date().getFullYear();
 })();
 </script>

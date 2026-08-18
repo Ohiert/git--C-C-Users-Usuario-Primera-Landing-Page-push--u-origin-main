@@ -623,3 +623,54 @@ img { max-width: 100%; display: block; }
 }
 
 .form__legal a:hover { color: var(--text-invert); }
+
+/* ─── Páginas de texto (sobre, legales) ─── */
+.prose__title {
+  margin-bottom: 1.75rem;
+  font-size: clamp(1.875rem, 4.2vw, 2.75rem);
+}
+
+.prose { max-width: 34rem; }
+
+.prose p { margin-bottom: 1.25rem; }
+
+.prose__lead {
+  font-size: 1.125rem;
+  color: var(--text-soft);
+}
+
+.prose__h2 {
+  margin: 2.75rem 0 1rem;
+  font-size: 1.3rem;
+  letter-spacing: -.015em;
+}
+
+.prose ul {
+  margin: 0 0 1.25rem;
+  padding-left: 1.15rem;
+  color: var(--text-soft);
+}
+
+.prose li { margin-bottom: .625rem; }
+.prose li strong { color: var(--text); }
+
+.prose .note { margin-top: 2rem; }
+
+/* Marcador temporal: contenido que falta por escribir */
+.hueco {
+  background: #fff4d6;
+  border-bottom: 2px solid #e0a92b;
+  padding: .1em .35em;
+  border-radius: 3px;
+  color: #6b4c07;
+  font-weight: 600;
+}
+
+.hueco-bloque {
+  background: #fffdf5;
+  border: 1px dashed #e0c98b;
+  border-radius: var(--radius);
+  padding: 1.25rem 1.375rem;
+  font-size: .9375rem;
+  color: var(--text-soft);
+}

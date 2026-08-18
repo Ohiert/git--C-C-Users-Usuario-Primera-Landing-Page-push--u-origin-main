@@ -55,6 +55,10 @@
     revealables.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
+  /* ── Año del footer ── */
+  var yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
   /* ── Formulario de suscripción ── */
   var form  = document.getElementById('form');
   var input = document.getElementById('email');
@@ -62,6 +66,9 @@
   var link  = document.getElementById('formLink');
   var msg   = document.getElementById('formMsg');
   var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  // Las paginas sin formulario (sobre, guia) no necesitan nada mas.
+  if (!form) return;
 
   // Mientras el action siga con el marcador, el formulario responde en local
   // sin enviar nada: así la web nunca muestra un error al visitante.
@@ -131,7 +138,4 @@
     link.hidden = true;
     input.removeAttribute('aria-invalid');
   });
-
-  /* ── Año del footer ── */
-  document.getElementById('year').textContent = new Date().getFullYear();
 })();
