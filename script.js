@@ -59,6 +59,7 @@
   var form  = document.getElementById('form');
   var input = document.getElementById('email');
   var btn   = document.getElementById('formBtn');
+  var link  = document.getElementById('formLink');
   var msg   = document.getElementById('formMsg');
   var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -75,7 +76,8 @@
 
   function succeed(value) {
     msg.dataset.state = 'ok';
-    msg.textContent = '¡Listo! Te escribimos a ' + value + '.';
+    msg.textContent = '¡Listo! Te escribimos a ' + value + '. Mientras tanto:';
+    link.hidden = false;
     form.reset();
   }
 
@@ -126,6 +128,7 @@
   input.addEventListener('input', function () {
     if (!msg.textContent) return;
     msg.textContent = '';
+    link.hidden = true;
     input.removeAttribute('aria-invalid');
   });
 

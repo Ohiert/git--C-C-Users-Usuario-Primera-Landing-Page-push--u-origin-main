@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de iniciación al ecommerce — Ecomoney</title>
+<meta name="description" content="Qué es un ecommerce, cómo lanzar el tuyo paso a paso y cómo monetizarlo. Con checklist de lanzamiento.">
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-alt: #f7f7f5;
+  --text: #17181a;
+  --text-soft: #5d6167;
+  --border: #e6e6e2;
+  --accent: #16a34a;
+  --accent-dark: #12833c;
+  --accent-soft: #eef8f1;
+  --warn-soft: #fdf4ec;
+  --warn-line: #d98b45;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 0 1.5rem 6rem;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.doc { max-width: 44rem; margin-inline: auto; }
+h1, h2, h3, h4, .eyebrow, .cover__brand, th, .toc ol, .check, .formula, table {
+  font-family: var(--sans);
+}
+h1 { font-size: 2.6rem; line-height: 1.1; letter-spacing: -.025em; margin: 0 0 1rem; font-weight: 600; }
+h2 { font-size: 1.7rem; line-height: 1.2; letter-spacing: -.02em; margin: 0 0 1rem; font-weight: 600; }
+h3 { font-size: 1.15rem; line-height: 1.3; letter-spacing: -.01em; margin: 2.2rem 0 .6rem; font-weight: 600; }
+h4 { font-size: .95rem; margin: 1.6rem 0 .4rem; font-weight: 600; }
+p { margin: 0 0 1.1rem; }
+ul, ol { margin: 0 0 1.1rem; padding-left: 1.3rem; }
+li { margin-bottom: .5rem; }
+strong { font-weight: 600; }
+a { color: var(--accent-dark); }
+.eyebrow {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 .7rem;
+}
+.cover {
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 3.5rem;
+}
+.cover__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: -.02em;
+  margin-bottom: 3rem;
+}
+.cover__mark {
+  display: grid;
+  place-items: center;
+  width: 1.9rem; height: 1.9rem;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-size: .95rem;
+  font-weight: 700;
+}
+.cover__sub { font-size: 1.2rem; color: var(--text-soft); max-width: 32rem; margin-bottom: 2.5rem; }
+.cover__meta {
+  font-family: var(--sans);
+  font-size: .82rem;
+  color: var(--text-soft);
+  border-top: 1px solid var(--border);
+  padding-top: 1.2rem;
+}
+.toc { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 14px; padding: 1.8rem 2rem; margin-bottom: 3.5rem; }
+.toc h2 { font-size: 1rem; margin-bottom: 1rem; }
+.toc ol { font-size: .92rem; padding-left: 1.1rem; margin: 0; }
+.toc li { margin-bottom: .45rem; }
+.parte { margin-bottom: 4rem; }
+.parte > h2 { margin-bottom: 1.4rem; }
+.lead { font-size: 1.1rem; color: var(--text-soft); margin-bottom: 2rem; }
+.box, .warn { padding: 1.3rem 1.5rem; border-radius: 0 12px 12px 0; margin: 1.8rem 0; font-size: .96rem; }
+.box { background: var(--accent-soft); border-left: 3px solid var(--accent); }
+.warn { background: var(--warn-soft); border-left: 3px solid var(--warn-line); }
+.box p:last-child, .warn p:last-child, .box ul:last-child, .warn ul:last-child { margin-bottom: 0; }
+.box__label, .warn__label {
+  display: block;
+  font-family: var(--sans);
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: .45rem;
+}
+.box__label { color: var(--accent-dark); }
+.warn__label { color: #a8632c; }
+.paso { border-top: 1px solid var(--border); padding-top: 2rem; margin-top: 2.5rem; }
+.paso__num {
+  display: inline-grid;
+  place-items: center;
+  width: 2.1rem; height: 2.1rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: .85rem;
+  font-weight: 600;
+  margin-bottom: .8rem;
+}
+.tabla-wrap { overflow-x: auto; margin: 1.8rem 0; }
+table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+th, td { text-align: left; padding: .7rem .8rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-weight: 600; font-size: .74rem; text-transform: uppercase; letter-spacing: .07em; color: var(--text-soft); }
+tbody tr:last-child td { border-bottom: none; }
+.check { list-style: none; padding-left: 0; font-size: .95rem; }
+.check li { position: relative; padding-left: 2rem; margin-bottom: .7rem; }
+.check li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: .25rem;
+  width: 1.05rem; height: 1.05rem;
+  border: 1.5px solid var(--accent);
+  border-radius: 4px;
+}
+.formula { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem; font-size: .92rem; margin: 1.2rem 0; }
+.cierre { border-top: 1px solid var(--border); padding-top: 2.5rem; margin-top: 4rem; }
+@page { size: A4; margin: 17mm 16mm 20mm; }
+@media print {
+  body { padding: 0; font-size: 10.5pt; line-height: 1.55; }
+  .doc { max-width: none; }
+  .cover { min-height: auto; padding-top: 1rem; padding-bottom: 2rem; break-after: page; border-bottom: none; }
+  .toc { break-after: page; }
+  .parte { margin-bottom: 2.5rem; }
+  h1 { font-size: 27pt; }
+  h2 { font-size: 16pt; break-after: avoid; }
+  h3, h4 { break-after: avoid; }
+  .paso, .box, .warn, table, .formula { break-inside: avoid; }
+  .parte--nueva { break-before: page; }
+  a { color: inherit; text-decoration: none; }
+}
+</style>
+</head>
+<body>
+<div class="doc">
+
+<header class="cover">
+  <div class="cover__brand">
+    <span class="cover__mark">E</span>
+    <span>Ecomoney</span>
+  </div>
+  <h1>Guía de iniciación al ecommerce</h1>
+  <p class="cover__sub">
+    Qué es exactamente, cómo lanzar el tuyo sin adivinar el orden de las cosas,
+    y cómo convertirlo en ingresos. Con checklist de lanzamiento al final.
+  </p>
+  <p class="cover__meta">Lectura de unos 25 minutos · Guía práctica, sin promesas de hacerse rico</p>
+</header>
+
+<nav class="toc">
+  <h2>Lo que vas a encontrar</h2>
+  <ol>
+    <li>Qué es un ecommerce, reducido a sus tres piezas</li>
+    <li>Cómo empezar: los cinco pasos, en el orden que importa</li>
+    <li>Cómo se monetiza: seis modelos y cuál te conviene</li>
+    <li>Los cuatro números que te dicen qué arreglar</li>
+    <li>Checklist de lanzamiento</li>
+    <li>Los errores que más caros salen</li>
+  </ol>
+</nav>
+
+<section class="parte">
+  <p class="lead">
+    Esta guía no te va a decir que montes una tienda en un fin de semana y vivas
+    de rentas. Te va a decir qué piezas necesitas, en qué orden montarlas y qué
+    mirar para saber si va bien. El resto es trabajo.
+  </p>
+  <p>
+    Está escrita para quien empieza de cero: sin tienda, sin producto decidido y
+    sin saber programar. Si ya vendes y lo que buscas es crecer, salta directo a
+    la parte 3.
+  </p>
+</section>
+
+<section class="parte parte--nueva">
+  <p class="eyebrow">Parte 1</p>
+  <h2>Qué es un ecommerce</h2>
+
+  <p class="lead">
+    Un ecommerce es un negocio que vende por internet. Suena obvio, pero la
+    palabra asusta más de lo que debería: por debajo solo hay tres piezas.
+  </p>
+
+  <h3>Pieza 1 · Un catálogo</h3>
+  <p>
+    Lo que vendes, presentado para que alguien decida comprarlo sin poder tocarlo.
+    Cada ficha de producto tiene que responder, sin que el cliente pregunte:
+  </p>
+  <ul>
+    <li><strong>Qué es</strong> — foto clara sobre fondo limpio, y otra del producto en uso real.</li>
+    <li><strong>Por qué le sirve</strong> — no las características, el problema que resuelve.</li>
+    <li><strong>Cuánto cuesta</strong> — precio final, con los gastos de envío visibles antes de pagar.</li>
+    <li><strong>Qué pasa si no le gusta</strong> — plazo de devolución y quién paga el envío de vuelta.</li>
+  </ul>
+  <p>
+    Las fotos hacen más por la venta que el texto. Una foto mala hunde un buen
+    producto; una foto buena vende uno normal. Si tienes que elegir dónde poner
+    el esfuerzo al principio, ponlo ahí.
+  </p>
+
+  <h3>Pieza 2 · Un cobro</h3>
+  <p>
+    La pasarela de pago es el servicio que cobra por ti: valida la tarjeta, mueve
+    el dinero y te lo ingresa. Tú no tocas los datos bancarios de nadie, y eso es
+    exactamente lo que quieres.
+  </p>
+  <p>
+    Todas cobran una comisión por transacción: un porcentaje más una cantidad fija
+    por operación. Suele moverse en torno al 1,5–3 % más unos céntimos, según el
+    país de la tarjeta y el tipo de cuenta. Confirma las tarifas vigentes en la
+    web de cada una antes de decidir, porque cambian.
+  </p>
+  <p>Al comparar, mira tres cosas y no más:</p>
+  <ul>
+    <li>La comisión real para tu ticket medio: en pedidos pequeños, la parte fija pesa mucho.</li>
+    <li>Cuántos días tarda en ingresarte el dinero.</li>
+    <li>Si acepta los métodos que usa tu cliente: tarjeta, Bizum, PayPal, pago aplazado.</li>
+  </ul>
+
+  <div class="warn">
+    <span class="warn__label">Cuidado</span>
+    <p>
+      Un porcentaje bajo con una parte fija alta te destroza el margen si vendes
+      barato. En un pedido de 8 €, treinta céntimos fijos son casi un 4 %
+      adicional. Haz la cuenta con tu precio real, no con el ejemplo del folleto.
+    </p>
+  </div>
+
+  <h3>Pieza 3 · Una entrega</h3>
+  <p>Lo que el cliente recibe después de pagar. Cambia mucho según lo que vendas:</p>
+  <ul>
+    <li><strong>Producto físico</strong> — el que más problemas da: embalaje, transportista, plazos, roturas, devoluciones. También el que más confianza genera cuando sale bien.</li>
+    <li><strong>Producto digital</strong> — un archivo o un acceso. Sin envío, sin stock, sin devoluciones logísticas. Se produce una vez y se vende muchas.</li>
+    <li><strong>Servicio</strong> — reservas, sesiones, asesorías. La entrega es tu tiempo, así que no escala solo.</li>
+  </ul>
+
+  <div class="box">
+    <span class="box__label">En una frase</span>
+    <p>
+      Si hay catálogo, cobro y entrega, tienes un ecommerce. Todo lo demás
+      —marca, diseño, anuncios, redes— se construye encima de esas tres piezas,
+      y ninguna de ellas sustituye a las tres.
+    </p>
+  </div>
+
+  <h3>Lo que no necesitas para empezar</h3>
+  <p>Mucha gente se atasca meses en cosas que no hacen falta el primer día:</p>
+  <ul>
+    <li><strong>Una app propia.</strong> Una web que funcione bien en el móvil basta durante mucho tiempo.</li>
+    <li><strong>Un almacén.</strong> Un armario vale. El almacén llega cuando el volumen lo pide.</li>
+    <li><strong>Un logo perfecto.</strong> Uno decente y sigues. Nadie ha dejado de comprar por una tipografía.</li>
+    <li><strong>Cien productos.</strong> Con cinco bien presentados se vende más que con cien mal.</li>
+  </ul>
+  <p>
+    Lo que sí necesitas desde el principio, si vendes en España, es estar dado de
+    alta para poder facturar y tener las páginas legales de la tienda: aviso
+    legal, política de privacidad, condiciones de compra y política de
+    devoluciones, con los 14 días de desistimiento que marca la ley de consumo.
+    No es opcional. Consúltalo con una gestoría: sale más barato que un susto.
+  </p>
+</section>
+
+<section class="parte parte--nueva">
+  <p class="eyebrow">Parte 2</p>
+  <h2>Cómo empezar, paso a paso</h2>
+
+  <p class="lead">
+    Cinco pasos. El orden no es decorativo: cada uno evita que tires dinero en el
+    siguiente.
+  </p>
+
+  <div class="paso">
+    <span class="paso__num">1</span>
+    <h3>Elige un nicho concreto</h3>
+    <p>
+      Un nicho no es una categoría, es una intersección entre un producto y una
+      persona. «Accesorios» no es un nicho. «Mochilas impermeables para ciclistas
+      urbanos» sí lo es.
+    </p>
+    <p>Completa esta frase hasta que suene natural:</p>
+    <div class="formula">
+      Vendo <strong>[producto]</strong> para <strong>[persona concreta]</strong>
+      que quieren <strong>[resultado]</strong>.
+    </div>
+    <p>
+      Si no puedes rellenarla sin usar la palabra «todo el mundo», todavía no
+      tienes nicho. Y sin nicho no sabes qué fotos hacer, qué escribir ni a quién
+      enseñarle el anuncio.
+    </p>
+    <h4>Cuatro filtros antes de comprometerte</h4>
+    <ul>
+      <li><strong>¿Puedes describirlo en una frase?</strong> Si necesitas un párrafo, el cliente tampoco lo entenderá.</li>
+      <li><strong>¿Sabes dónde está esa gente?</strong> Un foro, un subreddit, una cuenta que siguen, una tienda física. Si no sabes dónde encontrarlos, no podrás venderles.</li>
+      <li><strong>¿Puedes conseguir el producto de forma estable?</strong> Un proveedor que desaparece te deja sin negocio.</li>
+      <li><strong>¿Sale la cuenta?</strong> Precio de venta menos coste, menos envío, menos comisiones, menos publicidad. Si lo que queda es un euro, no hay negocio.</li>
+    </ul>
+    <div class="warn">
+      <span class="warn__label">Error clásico</span>
+      <p>
+        Elegir el nicho por lo que a ti te gusta, sin comprobar que alguien más lo
+        quiere. Tu entusiasmo no es un estudio de mercado.
+      </p>
+    </div>
+  </div>
+
+  <div class="paso">
+    <span class="paso__num">2</span>
+    <h3>Valida que alguien lo quiere</h3>
+    <p>
+      Validar es comprobar que existe demanda <em>antes</em> de gastar. Es el paso
+      que más gente se salta y el que más dinero ahorra.
+    </p>
+    <h4>Lo que puedes hacer esta semana, gratis</h4>
+    <ul>
+      <li><strong>Mira si lo buscan.</strong> Google Trends te dice si el interés sube, baja o es estacional. El planificador de palabras clave de Google Ads te da volúmenes aproximados de búsqueda.</li>
+      <li><strong>Estudia a la competencia.</strong> Si nadie lo vende, suele ser mala señal, no una oportunidad virgen. Si lo venden veinte, mira qué hacen mal: lee las reseñas de una y dos estrellas, ahí está tu hueco.</li>
+      <li><strong>Habla con diez personas</strong> del perfil al que quieres vender. No les preguntes si comprarían: pregúntales qué compraron la última vez, cuánto pagaron y qué les molestó. Lo que la gente dice que hará y lo que hace no coincide.</li>
+    </ul>
+    <div class="box">
+      <span class="box__label">Señal fuerte</span>
+      <p>
+        Alguien te pregunta cuándo puede comprarlo antes de que tú se lo ofrezcas.
+        Eso vale más que cien encuestas.
+      </p>
+    </div>
+  </div>
+
+  <div class="paso">
+    <span class="paso__num">3</span>
+    <h3>Monta la tienda</h3>
+    <p>
+      Aquí la trampa es el perfeccionismo. La tienda no tiene que estar acabada,
+      tiene que estar abierta. Lo que aprendes de diez visitas reales no lo
+      aprendes en tres semanas retocando colores.
+    </p>
+    <h4>Elegir plataforma</h4>
+    <p>
+      No hay una mejor: hay una mejor para tu caso. Decide con estos criterios,
+      por orden de importancia:
+    </p>
+    <ul>
+      <li><strong>Cuánto quieres pelearte con la técnica.</strong> Las plataformas de pago mensual (tipo Shopify) funcionan solas; las autogestionadas (tipo WooCommerce) son más baratas y más trabajo.</li>
+      <li><strong>Si necesitas tráfico prestado.</strong> Un marketplace como Etsy o Amazon te trae clientes desde el día uno a cambio de comisión y de no ser tu casa.</li>
+      <li><strong>Qué vendes.</strong> Para productos digitales, plataformas específicas te ahorran gestionar entregas e impuestos.</li>
+    </ul>
+    <h4>El mínimo para abrir</h4>
+    <ul>
+      <li>Entre cinco y diez productos, con fotos propias y descripciones que respondan objeciones.</li>
+      <li>Gastos de envío y plazos visibles antes del pago, sin sorpresas en el último paso.</li>
+      <li>Las páginas legales completas.</li>
+      <li>Una forma de contacto que funcione y a la que respondas.</li>
+      <li>La tienda probada en el móvil, comprando tú mismo un producto de principio a fin.</li>
+    </ul>
+    <div class="warn">
+      <span class="warn__label">Error clásico</span>
+      <p>
+        Descubrir un fallo en el proceso de pago tres semanas después de abrir,
+        porque nunca se compró nada a sí mismo. Haz el pedido completo, con
+        tarjeta real, antes de que lo haga un cliente.
+      </p>
+    </div>
+  </div>
+
+  <div class="paso">
+    <span class="paso__num">4</span>
+    <h3>Consigue las primeras visitas</h3>
+    <p>
+      Una tienda sin visitas no es un negocio, es una web bonita. Y aquí la regla
+      es contraintuitiva: <strong>elige un solo canal</strong>. Estar a medias en
+      tres no enseña nada; concentrarte en uno te dice si funciona.
+    </p>
+    <div class="tabla-wrap">
+      <table>
+        <thead>
+          <tr><th>Canal</th><th>Cuándo elegirlo</th><th>Qué esperar</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>SEO</strong><br>búsquedas en Google</td>
+            <td>Si tu producto se busca por su nombre y puedes escribir bien sobre él.</td>
+            <td>Barato y duradero, pero tarda meses. No sirve para validar rápido.</td>
+          </tr>
+          <tr>
+            <td><strong>Redes sociales</strong><br>contenido orgánico</td>
+            <td>Si el producto se ve bien en foto o vídeo y hay comunidad alrededor.</td>
+            <td>Gratis en dinero, caro en tiempo. Muy irregular.</td>
+          </tr>
+          <tr>
+            <td><strong>Publicidad pagada</strong></td>
+            <td>Si tienes presupuesto para perder y quieres respuestas en días.</td>
+            <td>Rápido y medible. Te dirá la verdad, aunque no te guste.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Tu objetivo no es «vender mucho»: son las primeras cien visitas reales. Con
+      cien visitas y cero ventas ya sabes algo importante, y sabrás dónde mirar en
+      el paso 5.
+    </p>
+  </div>
+
+  <div class="paso">
+    <span class="paso__num">5</span>
+    <h3>Mide y corrige</h3>
+    <p>
+      No necesitas un panel con veinte gráficas. Necesitas cuatro números, y cada
+      uno señala un problema distinto.
+    </p>
+    <div class="formula">
+      <strong>Visitas</strong> · cuánta gente entra<br>
+      <strong>Conversión</strong> = pedidos ÷ visitas × 100<br>
+      <strong>Ticket medio</strong> = facturación ÷ número de pedidos<br>
+      <strong>Coste de adquisición</strong> = lo gastado en publicidad ÷ clientes conseguidos
+    </div>
+    <p>
+      Una tienda pequeña suele convertir entre el 1 % y el 3 %: de cada cien
+      visitas, una a tres compran. Es una referencia orientativa, no una ley;
+      varía muchísimo según sector y canal.
+    </p>
+    <h4>Qué arreglar según el número que falla</h4>
+    <ul>
+      <li><strong>Pocas visitas.</strong> El problema no es la tienda, es que nadie la ve. Vuelve al paso 4.</li>
+      <li><strong>Visitas sí, ventas no.</strong> Algo rompe la confianza: fotos flojas, precio sin explicar, gastos de envío que aparecen tarde, o falta de información de devoluciones.</li>
+      <li><strong>Ticket medio bajo.</strong> Estás vendiendo de uno en uno. Ahí entran los packs y las recomendaciones, que verás en la parte 3.</li>
+      <li><strong>Coste de adquisición alto.</strong> Si captar un cliente cuesta más de lo que te deja, cada venta te empobrece. O subes el margen, o bajas el coste, o cambias de canal.</li>
+    </ul>
+    <div class="box">
+      <span class="box__label">La cuenta que lo decide todo</span>
+      <p>
+        Lo que te deja un cliente tiene que ser mayor que lo que cuesta
+        conseguirlo. Si no, no tienes un negocio: tienes una forma cara de
+        regalar producto.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="parte parte--nueva">
+  <p class="eyebrow">Parte 3</p>
+  <h2>Cómo se monetiza</h2>
+
+  <p class="lead">
+    Vender producto propio es solo una de las formas. Estos son los seis modelos
+    que funcionan, con lo que aporta y lo que cuesta cada uno.
+  </p>
+
+  <div class="tabla-wrap">
+    <table>
+      <thead>
+        <tr><th>Modelo</th><th>Cómo funciona</th><th>Su ventaja</th><th>Su pega</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Producto propio</strong></td>
+          <td>Fabricas o marcas lo que vendes.</td>
+          <td>Margen alto y control total.</td>
+          <td>Inmovilizas dinero en stock.</td>
+        </tr>
+        <tr>
+          <td><strong>Dropshipping</strong></td>
+          <td>El proveedor envía directamente al cliente.</td>
+          <td>Empiezas casi sin inversión.</td>
+          <td>Margen fino y no controlas ni plazos ni calidad.</td>
+        </tr>
+        <tr>
+          <td><strong>Productos digitales</strong></td>
+          <td>Plantillas, cursos, guías, presets.</td>
+          <td>Se produce una vez, se vende muchas.</td>
+          <td>Hay que crearlo, y eso lleva tiempo real.</td>
+        </tr>
+        <tr>
+          <td><strong>Suscripción</strong></td>
+          <td>Cobro recurrente por acceso o envío periódico.</td>
+          <td>Ingreso predecible mes a mes.</td>
+          <td>Hay que sostener el valor cada mes o se dan de baja.</td>
+        </tr>
+        <tr>
+          <td><strong>Marketplace</strong></td>
+          <td>Vendes dentro de Amazon, Etsy o similares.</td>
+          <td>Tráfico desde el primer día.</td>
+          <td>Comisión alta y el cliente es suyo, no tuyo.</td>
+        </tr>
+        <tr>
+          <td><strong>Afiliación</strong></td>
+          <td>Recomiendas productos de otros y cobras comisión.</td>
+          <td>Sin stock ni atención al cliente.</td>
+          <td>Dependes del tráfico y de las reglas de otro.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Cuál te conviene ahora mismo</h3>
+  <ul>
+    <li><strong>Si tienes poco dinero y ninguna audiencia:</strong> dropshipping o marketplace. Aprendes a vender sin arriesgar.</li>
+    <li><strong>Si tienes conocimiento y nada de stock:</strong> producto digital. Es el de mejor margen y el que menos logística exige.</li>
+    <li><strong>Si ya vendes y quieres estabilidad:</strong> suscripción encima de lo que ya funciona.</li>
+    <li><strong>Si tienes audiencia pero no producto:</strong> afiliación mientras preparas el tuyo.</li>
+  </ul>
+  <p>
+    Estos modelos no son excluyentes. Lo habitual es empezar con uno y añadir
+    otro encima cuando el primero se sostiene.
+  </p>
+
+  <h3>La palanca que casi todos olvidan</h3>
+  <p>
+    Todo el mundo intenta crecer trayendo más gente. Pero conseguir visitas
+    cuesta dinero, y subir lo que deja cada pedido no cuesta casi nada. Tres
+    formas, de menos a más esfuerzo:
+  </p>
+  <ul>
+    <li><strong>Packs.</strong> Junta productos que se usan a la vez y véndelos con una pequeña ventaja frente a comprarlos sueltos.</li>
+    <li><strong>Complemento en el carrito.</strong> Un añadido barato y obvio justo antes de pagar: la funda, el recambio, el envoltorio de regalo.</li>
+    <li><strong>Recompra.</strong> Un cliente que ya te compró es, con diferencia, el más fácil de convencer. Escríbele cuando toque reponer.</li>
+  </ul>
+  <div class="box">
+    <span class="box__label">Haz la cuenta</span>
+    <p>
+      Duplicar el tráfico suele costar el doble de dinero. Subir el ticket medio
+      un 20 % con un pack suele costar una tarde. Y las dos cosas dan un
+      resultado parecido en la caja.
+    </p>
+  </div>
+</section>
+
+<section class="parte parte--nueva">
+  <p class="eyebrow">Antes de abrir</p>
+  <h2>Checklist de lanzamiento</h2>
+  <p class="lead">
+    Imprime esta página o marca las casillas mentalmente. Si algo queda sin
+    marcar, todavía no estás listo para mandar tráfico.
+  </p>
+
+  <h3>Producto y nicho</h3>
+  <ul class="check">
+    <li>Puedo completar la frase «vendo X para Y que quieren Z» sin titubear.</li>
+    <li>He mirado la demanda: hay gente buscando esto.</li>
+    <li>He leído las reseñas malas de tres competidores y sé cuál es mi hueco.</li>
+    <li>He hablado con al menos cinco personas del perfil al que quiero vender.</li>
+    <li>La cuenta sale: precio menos coste, envío, comisiones y publicidad deja margen.</li>
+  </ul>
+
+  <h3>La tienda</h3>
+  <ul class="check">
+    <li>Entre cinco y diez productos publicados con fotos propias.</li>
+    <li>Cada ficha responde qué es, para qué sirve, cuánto cuesta y qué pasa si se devuelve.</li>
+    <li>Los gastos de envío y los plazos se ven antes del último paso.</li>
+    <li>Aviso legal, privacidad, condiciones de compra y devoluciones publicados.</li>
+    <li>Alta fiscal en regla para poder facturar.</li>
+    <li>Formulario o correo de contacto que funciona y que atiendo.</li>
+  </ul>
+
+  <h3>La prueba de fuego</h3>
+  <ul class="check">
+    <li>He comprado un producto en mi propia tienda, con tarjeta real, de principio a fin.</li>
+    <li>Me ha llegado el correo de confirmación y se entiende.</li>
+    <li>He repetido la compra desde el móvil.</li>
+    <li>He probado a devolver un pedido y sé cuánto trabajo me da.</li>
+  </ul>
+
+  <h3>Primeras semanas</h3>
+  <ul class="check">
+    <li>He elegido un solo canal para conseguir visitas.</li>
+    <li>Tengo forma de saber cuántas visitas y cuántos pedidos hay.</li>
+    <li>Me he puesto una fecha para revisar los cuatro números.</li>
+    <li>Sé cuánto estoy dispuesto a gastar antes de cambiar de estrategia.</li>
+  </ul>
+</section>
+
+<section class="parte parte--nueva">
+  <p class="eyebrow">Para terminar</p>
+  <h2>Los errores que más caros salen</h2>
+
+  <ol>
+    <li><strong>Comprar stock antes de validar.</strong> El más caro de todos, y el más común. Primero comprueba que alguien lo quiere.</li>
+    <li><strong>Retrasar la apertura por el diseño.</strong> Meses puliendo una web que nadie ha visto. Abre y corrige con datos.</li>
+    <li><strong>Estar en cinco canales a la vez.</strong> Esfuerzo repartido, ningún aprendizaje claro. Uno, bien.</li>
+    <li><strong>Competir bajando el precio.</strong> Siempre habrá alguien más barato. Compite explicando mejor, sirviendo mejor o llegando a un público más concreto.</li>
+    <li><strong>No mirar los números.</strong> Vender sin saber si cada venta deja o quita dinero es trabajar para pagarle la publicidad a otro.</li>
+    <li><strong>Olvidar al cliente que ya compró.</strong> Es el más barato de convencer y el que casi nadie atiende.</li>
+    <li><strong>Esconder los gastos de envío.</strong> La sorpresa en el último paso es la primera causa de carritos abandonados.</li>
+  </ol>
+
+  <div class="cierre">
+    <h3>Qué hacer al cerrar esta guía</h3>
+    <p>
+      No intentes hacerlo todo. Coge el paso 1 y dedícale esta semana: escribe la
+      frase de tu nicho, y no pases al paso 2 hasta que suene natural. Un ecommerce
+      se construye en ese orden, un paso cada vez.
+    </p>
+    <p>
+      Y cuando dudes de si algo merece la pena, vuelve a la cuenta que lo decide
+      todo: <strong>lo que te deja un cliente tiene que ser mayor que lo que
+      cuesta conseguirlo</strong>. Casi todas las decisiones se resuelven ahí.
+    </p>
+    <p class="cover__meta" style="margin-top:2rem">
+      Ecomoney · eccomoney.vercel.app · Guía de iniciación al ecommerce
+    </p>
+  </div>
+</section>
+
+</div>
+</body>
+</html>

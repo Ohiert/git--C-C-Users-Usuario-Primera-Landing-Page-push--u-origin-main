@@ -600,3 +600,26 @@ img { max-width: 100%; display: block; }
 
   .footer__inner { flex-direction: column; align-items: flex-start; }
 }
+
+/* Enlace de descarga tras suscribirse */
+.form__link {
+  display: inline-block;
+  margin-top: .25rem;
+  font-size: .9375rem;
+  font-weight: 500;
+  color: #6ee79b;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.form__link[hidden] { display: none; }
+
+.form__link:hover { color: #8df0b3; }
+
+.form__legal a {
+  color: rgba(244, 244, 242, .72);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.form__legal a:hover { color: var(--text-invert); }

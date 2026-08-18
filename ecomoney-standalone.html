@@ -604,6 +604,28 @@ img { max-width: 100%; display: block; }
   .footer__inner { flex-direction: column; align-items: flex-start; }
 }
 
+/* Enlace de descarga tras suscribirse */
+.form__link {
+  display: inline-block;
+  margin-top: .25rem;
+  font-size: .9375rem;
+  font-weight: 500;
+  color: #6ee79b;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.form__link[hidden] { display: none; }
+
+.form__link:hover { color: #8df0b3; }
+
+.form__legal a {
+  color: rgba(244, 244, 242, .72);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.form__legal a:hover { color: var(--text-invert); }
 </style>
 
 
@@ -842,7 +864,8 @@ img { max-width: 100%; display: block; }
           <button type="submit" class="btn btn--primary" id="formBtn">Enviar</button>
         </form>
         <p class="form__msg" id="formMsg" role="status"></p>
-        <p class="form__legal">Sin spam. Un correo, y te das de baja cuando quieras.</p>
+        <a class="form__link" id="formLink" href="https://eccomoney.vercel.app/guia-ecomoney.pdf" hidden>Descargar la guía en PDF</a>
+        <p class="form__legal">Sin spam. Un correo, y te das de baja cuando quieras. ¿Prefieres leerla sin dejar el correo? <a href="/guia">Ábrela aquí</a>.</p>
       </div>
     </section>
 
@@ -927,6 +950,7 @@ img { max-width: 100%; display: block; }
   var form  = document.getElementById('form');
   var input = document.getElementById('email');
   var btn   = document.getElementById('formBtn');
+  var link  = document.getElementById('formLink');
   var msg   = document.getElementById('formMsg');
   var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -943,7 +967,8 @@ img { max-width: 100%; display: block; }
 
   function succeed(value) {
     msg.dataset.state = 'ok';
-    msg.textContent = '¡Listo! Te escribimos a ' + value + '.';
+    msg.textContent = '¡Listo! Te escribimos a ' + value + '. Mientras tanto:';
+    link.hidden = false;
     form.reset();
   }
 
@@ -994,11 +1019,11 @@ img { max-width: 100%; display: block; }
   input.addEventListener('input', function () {
     if (!msg.textContent) return;
     msg.textContent = '';
+    link.hidden = true;
     input.removeAttribute('aria-invalid');
   });
 
   /* ── Año del footer ── */
   document.getElementById('year').textContent = new Date().getFullYear();
 })();
-
 </script>
